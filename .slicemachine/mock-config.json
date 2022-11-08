@@ -1,0 +1,40 @@
+{
+  "_cts": {
+    "homepage": {},
+    "category": {},
+    "instrument": {},
+    "instrument_type": {
+      "name": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      }
+    },
+    "instrument_group": {},
+    "all_categories": {},
+    "menu": {},
+    "all_instruments": {}
+  },
+  "slices": {
+    "Breadcrumbs": {
+      "default": {
+        "primary": {
+          "level_1_link_label": {
+            "content": "Home"
+          }
+        },
+        "items": {
+          "link_label": {
+            "content": "Page"
+          }
+        }
+      }
+    },
+    "Title": {
+      "default": {
+        "primary": {}
+      }
+    }
+  }
+}

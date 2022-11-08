@@ -1,0 +1,32 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "instrument_group",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "category": {
+      "id": "mock_document_id",
+      "link_type": "Document",
+      "type": "category",
+      "tags": [],
+      "lang": "en-us",
+      "slug": null,
+      "first_publication_date": "1970-01-01T00:00:01+0000",
+      "last_publication_date": "1970-01-01T01:00:00+0000"
+    },
+    "name": [
+      {
+        "type": "paragraph",
+        "text": "Do commodo pariatur exercitation cupidatat. Laborum reprehenderit enim est irure excepteur veniam laboris duis pariatur amet anim. Ea duis non laboris eu.",
+        "spans": []
+      }
+    ]
+  }
+}
