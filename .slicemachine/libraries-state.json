@@ -1,6 +1,155 @@
 {
   "slices": {
     "components": {
+      "menu": {
+        "library": "slices",
+        "id": "menu",
+        "name": "Menu",
+        "description": "Menu",
+        "model": {
+          "id": "menu",
+          "type": "SharedSlice",
+          "name": "Menu",
+          "description": "Menu",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Menu",
+              "primary": {
+                "linkLabel": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Link Label",
+                    "placeholder": "This is where it all begins...",
+                    "allowTargetBlank": true,
+                    "single": "paragraph"
+                  }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Link",
+                    "placeholder": "",
+                    "allowTargetBlank": false,
+                    "select": null
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            },
+            {
+              "id": "dropdownMenu",
+              "name": "Dropdown Menu",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Menu",
+              "primary": {
+                "dropdownLevel1Label": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Dropdown Level 1 Label",
+                    "placeholder": "This is where it all begins...",
+                    "allowTargetBlank": true,
+                    "single": "paragraph"
+                  }
+                }
+              },
+              "items": {
+                "dropdown_level_2_label": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Dropdown Level 2 Label",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  }
+                },
+                "dropdown_level_2_link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Dropdown Level 2 Link",
+                    "placeholder": "",
+                    "select": null
+                  }
+                }
+              },
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "linkLabel": [
+                {
+                  "type": "paragraph",
+                  "text": "Enim non elit nostrud duis voluptate incididunt consequat sit ut est laborum consequat proident ex.",
+                  "spans": []
+                }
+              ],
+              "link": {
+                "link_type": "Web",
+                "url": "https://prismic.io"
+              }
+            },
+            "slice_type": "menu"
+          },
+          "dropdownMenu": {
+            "variation": "dropdownMenu",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {
+                "dropdown_level_2_label": [
+                  {
+                    "type": "paragraph",
+                    "text": "Et do cupidatat duis labore reprehenderit.",
+                    "spans": []
+                  }
+                ],
+                "dropdown_level_2_link": {
+                  "link_type": "Web",
+                  "url": "https://prismic.io"
+                }
+              }
+            ],
+            "primary": {
+              "dropdownLevel1Label": [
+                {
+                  "type": "paragraph",
+                  "text": "Nisi adipisicing commodo magna consectetur eu ipsum labore adipisicing elit velit sit voluptate dolore id mollit.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "menu"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default": {
+            "path": "/Users/dianka/Documents/Demos/dms-route-resolver-demo/.slicemachine/assets/slices/Menu/default/preview.png",
+            "width": 1280,
+            "height": 800
+          },
+          "dropdownMenu": {
+            "path": "/Users/dianka/Documents/Demos/dms-route-resolver-demo/.slicemachine/assets/slices/Menu/dropdownMenu/preview.png",
+            "width": 1280,
+            "height": 800
+          }
+        }
+      },
       "title": {
         "library": "slices",
         "id": "title",

@@ -174,7 +174,7 @@ interface InstrumentTypeDocumentData {
  * Slice for *Instrument type → Slice Zone*
  *
  */
-type InstrumentTypeDocumentDataSlicesSlice = never;
+type InstrumentTypeDocumentDataSlicesSlice = TitleSlice;
 /**
  * Instrument type document from Prismic
  *
@@ -188,16 +188,16 @@ export type InstrumentTypeDocument<Lang extends string = string> = prismicT.Pris
 /** Content for Menu documents */
 interface MenuDocumentData {
     /**
-     * Breadcrumb field in *Menu*
+     * Logo field in *Menu*
      *
-     * - **Field Type**: Group
+     * - **Field Type**: Image
      * - **Placeholder**: *None*
-     * - **API ID Path**: menu.breadcrumb[]
+     * - **API ID Path**: menu.logo
      * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/group
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
      *
      */
-    breadcrumb: prismicT.GroupField<Simplify<MenuDocumentDataBreadcrumbItem>>;
+    logo: prismicT.ImageField<never>;
     /**
      * Slice Zone field in *Menu*
      *
@@ -211,36 +211,10 @@ interface MenuDocumentData {
     slices: prismicT.SliceZone<MenuDocumentDataSlicesSlice>;
 }
 /**
- * Item in Menu → Breadcrumb
- *
- */
-export interface MenuDocumentDataBreadcrumbItem {
-    /**
-     * Label field in *Menu → Breadcrumb*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.breadcrumb[].label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    label: prismicT.KeyTextField;
-    /**
-     * Link field in *Menu → Breadcrumb*
-     *
-     * - **Field Type**: Content Relationship
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.breadcrumb[].link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.RelationField;
-}
-/**
  * Slice for *Menu → Slice Zone*
  *
  */
-type MenuDocumentDataSlicesSlice = BreadcrumbsSlice;
+type MenuDocumentDataSlicesSlice = MenuSlice;
 /**
  * Menu document from Prismic
  *
@@ -250,8 +224,108 @@ type MenuDocumentDataSlicesSlice = BreadcrumbsSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<MenuDocumentData>, "menu", Lang>;
 export type AllDocumentTypes = AllInstrumentsDocument | CategoryDocument | HomepageDocument | InstrumentGroupDocument | InstrumentTypeDocument | MenuDocument;
+/**
+ * Primary content in Menu → Primary
+ *
+ */
+interface MenuSliceDefaultPrimary {
+    /**
+     * Link Label field in *Menu → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: This is where it all begins...
+     * - **API ID Path**: menu.primary.linkLabel
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    linkLabel: prismicT.RichTextField;
+    /**
+     * Link field in *Menu → Primary*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.primary.link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
+}
+/**
+ * Default variation for Menu Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Menu`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type MenuSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<MenuSliceDefaultPrimary>, never>;
+/**
+ * Primary content in Menu → Primary
+ *
+ */
+interface MenuSliceDropdownMenuPrimary {
+    /**
+     * Dropdown Level 1 Label field in *Menu → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: This is where it all begins...
+     * - **API ID Path**: menu.primary.dropdownLevel1Label
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    dropdownLevel1Label: prismicT.RichTextField;
+}
+/**
+ * Item in Menu → Items
+ *
+ */
+export interface MenuSliceDropdownMenuItem {
+    /**
+     * Dropdown Level 2 Label field in *Menu → Items*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.items[].dropdown_level_2_label
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    dropdown_level_2_label: prismicT.RichTextField;
+    /**
+     * Dropdown Level 2 Link field in *Menu → Items*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.items[].dropdown_level_2_link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    dropdown_level_2_link: prismicT.LinkField;
+}
+/**
+ * Dropdown Menu variation for Menu Slice
+ *
+ * - **API ID**: `dropdownMenu`
+ * - **Description**: `Menu`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type MenuSliceDropdownMenu = prismicT.SharedSliceVariation<"dropdownMenu", Simplify<MenuSliceDropdownMenuPrimary>, Simplify<MenuSliceDropdownMenuItem>>;
+/**
+ * Slice variation for *Menu*
+ *
+ */
+type MenuSliceVariation = MenuSliceDefault | MenuSliceDropdownMenu;
+/**
+ * Menu Shared Slice
+ *
+ * - **API ID**: `menu`
+ * - **Description**: `Menu`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type MenuSlice = prismicT.SharedSlice<"menu", MenuSliceVariation>;
 /**
  * Primary content in Title → Primary
  *
@@ -296,6 +370,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { AllInstrumentsDocumentData, AllInstrumentsDocumentDataCategoriesItem, AllInstrumentsDocument, CategoryDocumentData, CategoryDocument, HomepageDocumentData, HomepageDocumentDataSlicesSlice, HomepageDocument, InstrumentGroupDocumentData, InstrumentGroupDocument, InstrumentTypeDocumentData, InstrumentTypeDocumentDataSlicesSlice, InstrumentTypeDocument, MenuDocumentData, MenuDocumentDataBreadcrumbItem, MenuDocumentDataSlicesSlice, MenuDocument, AllDocumentTypes, TitleSliceDefaultPrimary, TitleSliceDefault, TitleSliceVariation, TitleSlice };
+        export type { AllInstrumentsDocumentData, AllInstrumentsDocumentDataCategoriesItem, AllInstrumentsDocument, CategoryDocumentData, CategoryDocument, HomepageDocumentData, HomepageDocumentDataSlicesSlice, HomepageDocument, InstrumentGroupDocumentData, InstrumentGroupDocument, InstrumentTypeDocumentData, InstrumentTypeDocumentDataSlicesSlice, InstrumentTypeDocument, MenuDocumentData, MenuDocumentDataSlicesSlice, MenuDocument, AllDocumentTypes, MenuSliceDefaultPrimary, MenuSliceDefault, MenuSliceDropdownMenuPrimary, MenuSliceDropdownMenuItem, MenuSliceDropdownMenu, MenuSliceVariation, MenuSlice, TitleSliceDefaultPrimary, TitleSliceDefault, TitleSliceVariation, TitleSlice };
     }
 }

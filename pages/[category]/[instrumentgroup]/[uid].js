@@ -6,11 +6,9 @@ import * as prismicH from "@prismicio/helpers";
 
 const __allComponents = { ...components };
 
-const Instrument = (doc, menu) => {
-    console.log(doc?.data?.name)
+const Instrument = ({ doc, menu }) => {
   return (
     <div>
-        <PrismicRichText field={doc?.data?.name}/>
       <Layout menu={menu}>
         <SliceZone slices={doc?.data?.slices} components={__allComponents} />
       </Layout>
@@ -23,13 +21,15 @@ export default Instrument;
 export async function getStaticProps({ params, previewData }) {
   const client = createClient(previewData);
 
-  const document = await client.getByUID("instrument_type", params.uid).catch(e => {
+  const document = await client
+    .getByUID("instrument_type", params.uid)
+    .catch((e) => {
       return null;
     });
 
-    const menu = (await client.getSingle("menu").catch(e => {
-        return null
-      }));
+  const menu = await client.getSingle("menu").catch((e) => {
+    return null;
+  });
 
   return {
     props: {

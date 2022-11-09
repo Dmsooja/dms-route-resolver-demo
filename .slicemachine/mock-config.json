@@ -17,21 +17,12 @@
     "all_instruments": {}
   },
   "slices": {
-    "Breadcrumbs": {
+    "Title": {
       "default": {
-        "primary": {
-          "level_1_link_label": {
-            "content": "Home"
-          }
-        },
-        "items": {
-          "link_label": {
-            "content": "Page"
-          }
-        }
+        "primary": {}
       }
     },
-    "Title": {
+    "Menu": {
       "default": {
         "primary": {}
       }
